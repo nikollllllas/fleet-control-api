@@ -1,9 +1,10 @@
 class UserRepositoryInMemory {
   users = []
 
-  async create({ name, email, password }) {
+  async create({ username, name, email, password }) {
     const user = {
       id: Math.random().toString(16).slice(2),
+      username, 
       name,
       email,
       password
@@ -14,8 +15,8 @@ class UserRepositoryInMemory {
     return user
   }
 
-  async findByEmail(email) {
-    return this.users.find((user) => user.email === email)
+  async findByUsername(username) {
+    return this.users.find((user) => user.username === username)
   }
 }
 

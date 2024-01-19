@@ -13,6 +13,7 @@ describe('UserCreateService', () => {
 
   it('user should be created', async () => {
     const user = {
+      username: 'usertest',
       name: 'User Test',
       email: 'test@email.com',
       password: '123321'
@@ -25,12 +26,14 @@ describe('UserCreateService', () => {
 
   it('should not be able to create a new user with an email already registered', async () => {
     const user1 = {
+      username: 'usertestone',
       name: 'User Test One',
       email: 'test@email.com',
       password: '123321'
     }
 
     const user2 = {
+      username: 'usertesttwo',
       name: 'User Test Two',
       email: 'test@email.com',
       password: '321123'
@@ -39,6 +42,6 @@ describe('UserCreateService', () => {
     await userCreateService.execute(user1)
     expect(async () => {
       await userCreateService.execute(user2)
-    }).rejects.toEqual(new AppError('Email already registered'))
+    }).rejects.toEqual(new AppError('Username already registered'))
   })
 })
